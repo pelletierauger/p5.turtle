@@ -1,6 +1,6 @@
 var looping = true;
 var showTurtle = true;
-var turtleSize = 50;
+var turtleSize = 25;
 var turtleSpeed = 1;
 var turtles = [];
 
@@ -12,9 +12,39 @@ var Turtle = function(heading, position) {
 };
 
 var bob = new Turtle(90, new p5.Vector(0, 0));
+bob.name = "Bob";
 bob.instructions = function() {
-    forward(2);
-    right(1);
+    var s = 10;
+    repeat(3, function() {
+        repeat(30, function() {
+            forward(s);
+            right(20);
+            s += 0.1;
+        });
+        repeat(60, function() {
+            forward(s);
+            left(20);
+            s += 0.1;
+        });
+    });
+};
+
+var irene = new Turtle(0, new p5.Vector(10, 0));
+irene.name = "Irene";
+irene.instructions = function() {
+    var s = 10;
+    repeat(30, function() {
+        repeat(30, function() {
+            forward(s);
+            right(20);
+            s += 0.1;
+        });
+        repeat(60, function() {
+            forward(s);
+            left(20);
+            s += 0.1;
+        });
+    });
 };
 
 var turtle = new p5(function(p) {
@@ -72,15 +102,19 @@ var sketch = new p5(function(p) {
     p.setup = function() {
         p.canvas = p.createCanvas(p.windowWidth, p.windowHeight);
         p.frameRate(30);
-        p.noStroke();
+        p.background(0);
+        // p.noStroke();
+        p.stroke(255);
+        p.fill(255);
         p.canvas.addClass('sketch');
         p.angleMode(p.DEGREES);
         if (!looping) { p.noLoop(); }
+        fillInstructionBox();
     }
     p.draw = function() {
         p.translate(p.width / 2, p.height / 2);
-        p.fill(125, 0, 0);
-        p.ellipse(0, 0, turtleSize * 2);
+        // p.fill(125, 0, 0);
+        // p.ellipse(0, 0, turtleSize * 2);
         drawTurtle();
     };
 });
