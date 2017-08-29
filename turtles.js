@@ -100,18 +100,22 @@ var zyg = new Turtle({
     heading: 0,
     position: new p5.Vector(0, 0),
     instructions: function() {
-        repeat(20, function() {
+        repeat(6, function() {
             repeat(5, function() {
                 forward(10);
+                right(10);
                 penUp();
                 forward(10);
+                right(10);
                 penDown();
             });
-            right(20);
-            repeat(5, function() {
+            right(60);
+            repeat(10, function() {
                 back(10);
+                left(10);
                 penUp();
                 back(10);
+                left(10);
                 penDown();
             });
             left(20);
