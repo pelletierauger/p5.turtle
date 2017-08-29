@@ -25,6 +25,9 @@ var turtleDisplay = new p5(function(p) {
             p.vertex(turtleSize / 3, 0);
             p.vertex(-turtleSize / 3, 0);
             p.endShape(p.CLOSE);
+            p.fill(255);
+            p.ellipse(0, 0, 5);
+            p.fill(0, 200, 0);
             p.pop();
         }
     };
@@ -67,8 +70,10 @@ var sketch = new p5(function(p) {
         if (!looping) { p.noLoop(); }
     }
     p.draw = function() {
-        p.translate(p.width / 2, p.height / 2);
-        drawTurtle();
-        p.drawCount++;
+        if (looping) {
+            p.translate(p.width / 2, p.height / 2);
+            drawTurtle();
+            p.drawCount++;
+        }
     };
 });

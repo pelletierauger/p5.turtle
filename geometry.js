@@ -33,7 +33,7 @@ function repeat(n, f) {
 }
 
 function drawTurtle() {
-    var t = sketch.frameCount;
+    var t = sketch.drawCount;
     for (var i = 0; i < turtles.length; i++) {
         if (turtles[i].states[t]) {
             sketch.beginShape();
