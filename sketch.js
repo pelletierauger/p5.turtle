@@ -3,7 +3,7 @@ var showTurtle = true;
 var turtleSize = 25;
 var turtleSpeed = 1;
 
-var turtle = new p5(function(p) {
+var turtleDisplay = new p5(function(p) {
     p.setup = function() {
         p.canvas = p.createCanvas(p.windowWidth, p.windowHeight);
         p.frameRate(30);

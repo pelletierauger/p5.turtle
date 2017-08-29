@@ -34,8 +34,8 @@ function drawTurtle() {
             if (turtles[i].states[t].f == "forward") {
                 var a = turtles[i].heading;
                 var r = turtles[i].states[t].s;
-                var x = turtle.cos(a) * r;
-                var y = turtle.sin(a) * r;
+                var x = turtleDisplay.cos(a) * r;
+                var y = turtleDisplay.sin(a) * r;
                 turtles[i].position.x += x;
                 turtles[i].position.y += y;
             } else if (turtles[i].states[t].f == "right") {
