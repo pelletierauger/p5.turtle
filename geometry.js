@@ -49,9 +49,11 @@ function drawTurtle() {
     for (var i = 0; i < turtles.length; i++) {
         if (turtles[i].states[t]) {
             var penDown = (turtles[i].penDown) ? true : false;
-            if (penDown) {
-                sketch.beginShape();
-                sketch.vertex(turtles[i].position.x, turtles[i].position.y);
+            if (turtles[i].states[t].f == "forward" || turtles[i].states[t].f == "back") {
+                if (penDown) {
+                    sketch.beginShape();
+                    sketch.vertex(turtles[i].position.x, turtles[i].position.y);
+                }
             }
             if (turtles[i].states[t].f == "forward") {
                 var a = turtles[i].heading;
@@ -78,9 +80,11 @@ function drawTurtle() {
             } else if (turtles[i].states[t].f == "penDown") {
                 turtles[i].penDown = true;
             }
-            if (penDown) {
-                sketch.vertex(turtles[i].position.x, turtles[i].position.y);
-                sketch.endShape(sketch.LINE);
+            if (turtles[i].states[t].f == "forward" || turtles[i].states[t].f == "back") {
+                if (penDown) {
+                    sketch.vertex(turtles[i].position.x, turtles[i].position.y);
+                    sketch.endShape(sketch.LINE);
+                }
             }
         }
     }
