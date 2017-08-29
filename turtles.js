@@ -38,31 +38,33 @@
 //     forward(s);
 // };
 
-// var nina = new Turtle(0, new p5.Vector(0, 0));
-// nina.name = "Nina";
-// nina.instructions = function() {
-//     var s = 5;
-//     var times = 4;
-//     repeat(times, function() {
-//         repeat(60, function() {
-//             forward(s);
-//             right(20);
-//             s += 0.1;
-//         });
-//         repeat(60, function() {
-//             forward(s);
-//             left(20);
-//             s -= 0.1;
-//         });
-//         forward(60);
-//         repeat(4, function() {
-//             forward(s);
-//             left(360 / times / 4);
-//         });
-//         forward(60);
-//     });
-//     forward(s);
-// };
+var nina = new Turtle({
+    heading: 0,
+    position: new p5.Vector(0, 0),
+    instructions: function() {
+        var s = 5;
+        var times = 4;
+        repeat(times, function() {
+            repeat(60, function() {
+                forward(s);
+                right(20);
+                s += 0.1;
+            });
+            repeat(60, function() {
+                forward(s);
+                left(20);
+                s -= 0.1;
+            });
+            forward(60);
+            repeat(4, function() {
+                forward(s);
+                left(360 / times / 4);
+            });
+            forward(60);
+        });
+        forward(s);
+    }
+});
 
 var num = 10;
 for (var i = 0; i < num; i++) {
