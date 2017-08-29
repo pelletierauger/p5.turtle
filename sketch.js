@@ -43,12 +43,12 @@ var turtle = new p5(function(p) {
         if (p.key == 't' || p.key == 'T') {
             if (showTurtle) {
                 showTurtle = false;
-                turtle.canvas.style("display", "none");
-                turtle.noLoop();
+                p.canvas.style("display", "none");
+                p.noLoop();
             } else {
                 showTurtle = true;
-                turtle.canvas.style("display", "block");
-                turtle.loop();
+                p.canvas.style("display", "block");
+                p.loop();
             }
         }
     }
