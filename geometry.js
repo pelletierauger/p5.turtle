@@ -21,7 +21,7 @@ function left(angle) {
 
 function repeat(n, f) {
     for (var i = 1; i <= n; i++) {
-        f();
+        f(i - 1);
     }
 }
 
