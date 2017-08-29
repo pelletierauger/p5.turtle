@@ -1,5 +1,3 @@
-var instructionBox;
-
 function forward(size) {
     instructionBox.push({
         f: "forward",
@@ -24,15 +22,6 @@ function left(angle) {
 function repeat(n, f) {
     for (var i = 1; i <= n; i++) {
         f();
-    }
-}
-
-function fillInstructionBox() {
-    instructionBox = [];
-    for (var i = 0; i < turtles.length; i++) {
-        turtles[i].instructions();
-        turtles[i].states = instructionBox;
-        instructionBox = [];
     }
 }
 

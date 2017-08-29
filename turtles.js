@@ -67,27 +67,29 @@
 var num = 10;
 for (var i = 0; i < num; i++) {
     var a = 360 / num;
-    var bob = new Turtle(i * a, new p5.Vector(0, 0));
-    bob.name = "Bob";
-    bob.instructions = function() {
-        var j = 1;
-        repeat(8, function() {
-            repeat(10, function() {
-                forward(5);
-                right(4);
-            });
-            if (j < 0) {
+    var bob = new Turtle({
+        heading: i * a,
+        position: new p5.Vector(0, 0),
+        instructions: function() {
+            var j = 1;
+            repeat(8, function() {
                 repeat(10, function() {
                     forward(5);
                     right(4);
                 });
-            } else {
-                repeat(10, function() {
-                    forward(5);
-                    left(4);
-                });
-            }
-            j *= -1;
-        });
-    };
+                if (j < 0) {
+                    repeat(10, function() {
+                        forward(5);
+                        right(4);
+                    });
+                } else {
+                    repeat(10, function() {
+                        forward(5);
+                        left(4);
+                    });
+                }
+                j *= -1;
+            });
+        }
+    });
 }

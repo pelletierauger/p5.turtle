@@ -60,18 +60,14 @@ var sketch = new p5(function(p) {
         p.canvas = p.createCanvas(p.windowWidth, p.windowHeight);
         p.frameRate(30);
         p.background(0);
-        // p.noStroke();
         p.stroke(255);
         p.fill(255);
         p.canvas.addClass('sketch');
         p.angleMode(p.DEGREES);
         if (!looping) { p.noLoop(); }
-        fillInstructionBox();
     }
     p.draw = function() {
         p.translate(p.width / 2, p.height / 2);
-        // p.fill(125, 0, 0);
-        // p.ellipse(0, 0, turtleSize * 2);
         drawTurtle();
         p.drawCount++;
     };
