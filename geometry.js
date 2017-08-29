@@ -5,6 +5,13 @@ function forward(size) {
     });
 }
 
+function back(size) {
+    instructionBox.push({
+        f: "back",
+        s: size
+    });
+}
+
 function right(angle) {
     instructionBox.push({
         f: "right",
@@ -38,6 +45,13 @@ function drawTurtle() {
                 var y = turtleDisplay.sin(a) * r;
                 turtles[i].position.x += x;
                 turtles[i].position.y += y;
+            } else if (turtles[i].states[t].f == "back") {
+                var a = turtles[i].heading;
+                var r = turtles[i].states[t].s;
+                var x = turtleDisplay.cos(a) * r;
+                var y = turtleDisplay.sin(a) * r;
+                turtles[i].position.x -= x;
+                turtles[i].position.y -= y;
             } else if (turtles[i].states[t].f == "right") {
                 var angle = turtles[i].states[t].a;
                 turtles[i].heading += angle;

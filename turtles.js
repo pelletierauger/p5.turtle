@@ -38,33 +38,33 @@
 //     forward(s);
 // };
 
-var nina = new Turtle({
-    heading: 0,
-    position: new p5.Vector(0, 0),
-    instructions: function() {
-        var s = 5;
-        var times = 4;
-        repeat(times, function() {
-            repeat(60, function() {
-                forward(s);
-                right(20);
-                s += 0.1;
-            });
-            repeat(60, function() {
-                forward(s);
-                left(20);
-                s -= 0.1;
-            });
-            forward(60);
-            repeat(4, function() {
-                forward(s);
-                left(360 / times / 4);
-            });
-            forward(60);
-        });
-        forward(s);
-    }
-});
+// var nina = new Turtle({
+//     heading: 0,
+//     position: new p5.Vector(0, 0),
+//     instructions: function() {
+//         var s = 5;
+//         var times = 4;
+//         repeat(times, function() {
+//             repeat(60, function() {
+//                 forward(s);
+//                 right(20);
+//                 s += 0.1;
+//             });
+//             repeat(60, function() {
+//                 forward(s);
+//                 left(20);
+//                 s -= 0.1;
+//             });
+//             forward(60);
+//             repeat(4, function() {
+//                 forward(s);
+//                 left(360 / times / 4);
+//             });
+//             forward(60);
+//         });
+//         forward(s);
+//     }
+// });
 
 // var num = 10;
 // for (var i = 0; i < num; i++) {
@@ -95,3 +95,18 @@ var nina = new Turtle({
 //         }
 //     });
 // }
+
+var zyg = new Turtle({
+    heading: 0,
+    position: new p5.Vector(0, 0),
+    instructions: function() {
+        repeat(5, function() {
+            repeat(10, function() {
+                forward(10);
+            });
+            repeat(10, function() {
+                back(10);
+            });
+        });
+    }
+});
