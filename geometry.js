@@ -10,14 +10,14 @@ function forward(size) {
 function right(angle) {
     instructionBox.push({
         f: "right",
-        s: angle
+        a: angle
     });
 }
 
 function left(angle) {
     instructionBox.push({
         f: "left",
-        s: angle
+        a: angle
     });
 }
 
@@ -31,35 +31,33 @@ function fillInstructionBox() {
     instructionBox = [];
     for (var i = 0; i < turtles.length; i++) {
         turtles[i].instructions();
-        for (var j = 0; j < instructionBox.length; j++) {
-            if (instructionBox[j].origin == null) {
-                instructionBox[j].origin = turtles[i];
-            }
-        }
+        turtles[i].states = instructionBox;
+        instructionBox = [];
     }
 }
 
 function drawTurtle() {
     var t = sketch.frameCount;
-    if (instructionBox[t]) {
-        sketch.beginShape();
-        sketch.vertex(instructionBox[t].origin.position.x, instructionBox[t].origin.position.y);
-        if (instructionBox[t].f == "forward") {
-            var a = instructionBox[t].origin.heading;
-            var r = instructionBox[t].s;
-            var x = turtle.cos(a) * r;
-            var y = turtle.sin(a) * r;
-            instructionBox[t].origin.position.x += x;
-            instructionBox[t].origin.position.y += y;
-        } else if (instructionBox[t].f == "right") {
-            var angle = instructionBox[t].s;
-            instructionBox[t].origin.heading += angle;
-        } else if (instructionBox[t].f == "left") {
-            var angle = instructionBox[t].s;
-            instructionBox[t].origin.heading -= angle;
+    for (var i = 0; i < turtles.length; i++) {
+        if (turtles[i].states[t]) {
+            sketch.beginShape();
+            sketch.vertex(turtles[i].position.x, turtles[i].position.y);
+            if (turtles[i].states[t].f == "forward") {
+                var a = turtles[i].heading;
+                var r = turtles[i].states[t].s;
+                var x = turtle.cos(a) * r;
+                var y = turtle.sin(a) * r;
+                turtles[i].position.x += x;
+                turtles[i].position.y += y;
+            } else if (turtles[i].states[t].f == "right") {
+                var angle = turtles[i].states[t].a;
+                turtles[i].heading += angle;
+            } else if (turtles[i].states[t].f == "left") {
+                var angle = turtles[i].states[t].a;
+                turtles[i].heading -= angle;
+            }
+            sketch.vertex(turtles[i].position.x, turtles[i].position.y);
+            sketch.endShape(sketch.LINE);
         }
-        sketch.vertex(instructionBox[t].origin.position.x, instructionBox[t].origin.position.y);
-        sketch.endShape(sketch.LINE);
-        // sketch.ellipse()
     }
 }

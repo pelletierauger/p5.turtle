@@ -55,6 +55,7 @@ var turtle = new p5(function(p) {
 });
 
 var sketch = new p5(function(p) {
+    p.drawCount = 0;
     p.setup = function() {
         p.canvas = p.createCanvas(p.windowWidth, p.windowHeight);
         p.frameRate(30);
@@ -72,5 +73,6 @@ var sketch = new p5(function(p) {
         // p.fill(125, 0, 0);
         // p.ellipse(0, 0, turtleSize * 2);
         drawTurtle();
+        p.drawCount++;
     };
 });

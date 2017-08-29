@@ -38,28 +38,56 @@
 //     forward(s);
 // };
 
-var nina = new Turtle(0, new p5.Vector(0, 0));
-nina.name = "Nina";
-nina.instructions = function() {
-    var s = 5;
-    var times = 4;
-    repeat(times, function() {
-        repeat(60, function() {
-            forward(s);
-            right(20);
-            s += 0.1;
+// var nina = new Turtle(0, new p5.Vector(0, 0));
+// nina.name = "Nina";
+// nina.instructions = function() {
+//     var s = 5;
+//     var times = 4;
+//     repeat(times, function() {
+//         repeat(60, function() {
+//             forward(s);
+//             right(20);
+//             s += 0.1;
+//         });
+//         repeat(60, function() {
+//             forward(s);
+//             left(20);
+//             s -= 0.1;
+//         });
+//         forward(60);
+//         repeat(4, function() {
+//             forward(s);
+//             left(360 / times / 4);
+//         });
+//         forward(60);
+//     });
+//     forward(s);
+// };
+
+var num = 10;
+for (var i = 0; i < num; i++) {
+    var a = 360 / num;
+    var bob = new Turtle(i * a, new p5.Vector(0, 0));
+    bob.name = "Bob";
+    bob.instructions = function() {
+        var j = 1;
+        repeat(8, function() {
+            repeat(10, function() {
+                forward(5);
+                right(4);
+            });
+            if (j < 0) {
+                repeat(10, function() {
+                    forward(5);
+                    right(4);
+                });
+            } else {
+                repeat(10, function() {
+                    forward(5);
+                    left(4);
+                });
+            }
+            j *= -1;
         });
-        repeat(60, function() {
-            forward(s);
-            left(20);
-            s -= 0.1;
-        });
-        forward(60);
-        repeat(4, function() {
-            forward(s);
-            left(360 / times / 4);
-        });
-        forward(60);
-    });
-    forward(s);
-};
+    };
+}
