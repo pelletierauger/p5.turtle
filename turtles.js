@@ -97,8 +97,6 @@
 // }
 
 var zyg = new Turtle({
-    heading: 0,
-    position: new p5.Vector(0, 0),
     instructions: function() {
         repeat(6, function() {
             repeat(5, function() {
