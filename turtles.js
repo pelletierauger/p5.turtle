@@ -102,11 +102,17 @@ var zyg = new Turtle({
     instructions: function() {
         repeat(20, function() {
             repeat(5, function() {
-                forward(20);
+                forward(10);
+                penUp();
+                forward(10);
+                penDown();
             });
             right(20);
             repeat(5, function() {
-                back(20);
+                back(10);
+                penUp();
+                back(10);
+                penDown();
             });
             left(20);
         });
