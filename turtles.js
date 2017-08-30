@@ -134,8 +134,8 @@ var jolene = new Turtle({
 
         function square(size) {
             repeat(4, function() {
-                repeat(4, function() {
-                    forward(size / 4);
+                repeat(8, function() {
+                    forward(size / 8);
                 });
                 right(90);
             });
