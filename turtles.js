@@ -80,7 +80,7 @@ for (var i = 0; i < num; i++) {
 }
 
 var zyg = new Turtle({
-    awake: true,
+    awake: false,
     instructions: function() {
         repeat(6, function() {
             repeat(5, function() {
@@ -118,5 +118,23 @@ var cedric = new Turtle({
                 left(10);
             });
         });
+    }
+});
+
+var jolene = new Turtle({
+    instructions: function() {
+        repeat(12, function() {
+            square(150);
+            right(30);
+        });
+
+        function square(size) {
+            repeat(4, function() {
+                repeat(4, function() {
+                    forward(size / 4);
+                });
+                right(90);
+            });
+        }
     }
 });
