@@ -20,9 +20,9 @@ var irene = new Turtle({
 });
 
 var nina = new Turtle({
-    awake: false,
+    awake: true,
     heading: 0,
-    position: new p5.Vector(0, 0),
+    position: new p5.Vector(-500, 250),
     instructions: function() {
         var s = 5;
         var times = 4;
@@ -52,7 +52,7 @@ var num = 10;
 for (var i = 0; i < num; i++) {
     var a = 360 / num;
     var bob = new Turtle({
-        awake: false,
+        awake: true,
         heading: i * a,
         position: new p5.Vector(0, 0),
         instructions: function() {
@@ -81,6 +81,7 @@ for (var i = 0; i < num; i++) {
 
 var zyg = new Turtle({
     awake: true,
+    position: new p5.Vector(475, -150),
     instructions: function() {
         repeat(6, function() {
             repeat(5, function() {
@@ -106,7 +107,8 @@ var zyg = new Turtle({
 });
 
 var cedric = new Turtle({
-    awake: false,
+    awake: true,
+    position: new p5.Vector(500, 200),
     instructions: function() {
         repeat(6, function() {
             repeat(18, function() {
@@ -122,10 +124,11 @@ var cedric = new Turtle({
 });
 
 var jolene = new Turtle({
-    awake: false,
+    awake: true,
+    position: new p5.Vector(-450, -200),
     instructions: function() {
         repeat(12, function() {
-            square(150);
+            square(100);
             right(30);
         });
 
