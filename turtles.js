@@ -52,7 +52,7 @@ var num = 10;
 for (var i = 0; i < num; i++) {
     var a = 360 / num;
     var bob = new Turtle({
-        awake: true,
+        awake: false,
         heading: i * a,
         position: new p5.Vector(0, 0),
         instructions: function() {
@@ -80,7 +80,7 @@ for (var i = 0; i < num; i++) {
 }
 
 var zyg = new Turtle({
-    awake: false,
+    awake: true,
     instructions: function() {
         repeat(6, function() {
             repeat(5, function() {
