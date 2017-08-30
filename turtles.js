@@ -52,7 +52,7 @@ var num = 10;
 for (var i = 0; i < num; i++) {
     var a = 360 / num;
     var bob = new Turtle({
-        awake: false,
+        awake: true,
         heading: i * a,
         position: new p5.Vector(0, 0),
         instructions: function() {
@@ -122,6 +122,7 @@ var cedric = new Turtle({
 });
 
 var jolene = new Turtle({
+    awake: false,
     instructions: function() {
         repeat(12, function() {
             square(150);
