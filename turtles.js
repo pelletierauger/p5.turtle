@@ -205,7 +205,7 @@ var curve = new Turtle({
     instructions: function() {
         let a = 0;
         for (let i = 0; i < 300; i++) {
-            a = Math.cos(i * 0.3) * 20;
+            a = Math.cos(i * 0.025) * 20;
             left(a);
             forward(10);
             // left(10);

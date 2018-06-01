@@ -3,132 +3,78 @@ var showTurtle = true;
 var turtleSize = 25;
 var turtleSpeed = 1;
 let graphics;
+let drawCount = 0;
+let canvas;
 
-var sketch = new p5(function(p) {
-    p.drawCount = 0;
-    p.setup = function() {
-        p.canvas = p.createCanvas(p.windowWidth, p.windowHeight);
-        graphics = p.createGraphics(p.width * 2, p.height * 2);
-        p.frameRate(30);
-        p.background(255);
-        p.strokeWeight(2);
-        p.noStroke();
-        p.fill(0, 200, 0);
-        graphics.background(255);
-        graphics.strokeWeight(2);
-        graphics.stroke(0);
-        graphics.fill(0);
-        p.canvas.addClass('sketch');
-        p.angleMode(p.DEGREES);
-        if (!looping) { p.noLoop(); }
+function setup() {
+    canvas = createCanvas(windowWidth, windowHeight);
+    graphics = createGraphics(width * 2, height * 2);
+    frameRate(30);
+    background(255);
+    strokeWeight(2);
+    noStroke();
+    fill(0, 200, 0);
+    graphics.background(255);
+    graphics.strokeWeight(2);
+    graphics.stroke(0);
+    graphics.fill(0);
+    canvas.addClass('sketch');
+    angleMode(DEGREES);
+    // textFont("'Inconsolata', 'Baskerville', Georgia, serif");
+    // textSize(25);
+    if (!looping) { noLoop(); }
+}
+
+function draw() {
+    if (looping) {
+        graphics.push();
+        graphics.translate(width / 2, height / 2);
+        drawTurtle();
+        graphics.pop();
+        image(graphics, 0, 0, width, height);
+        // fill(0);
+        // text("f = " + f, width / 2, height * 0.75);
+        // fill(0, 200, 0);
+        if (showTurtle) {
+            translate(width / 2, height / 2);
+            for (var i = 0; i < turtles.length; i++) {
+                push();
+                translate(turtles[i].position.x, turtles[i].position.y);
+                rotate(turtles[i].heading + 90);
+                beginShape();
+                vertex(0, -turtleSize);
+                vertex(turtleSize / 3, 0);
+                vertex(-turtleSize / 3, 0);
+                endShape(CLOSE);
+                fill(0);
+                ellipse(0, 0, 5);
+                fill(0, 200, 0);
+                pop();
+            }
+
+        }
+        drawCount++;
     }
-    p.draw = function() {
+}
+
+function keyPressed() {
+    if (keyCode === 32) {
         if (looping) {
-            graphics.push();
-            graphics.translate(p.width / 2, p.height / 2);
-            drawTurtle();
-            graphics.pop();
-            p.image(graphics, 0, 0, p.width, p.height);
-
-            if (showTurtle) {
-                p.translate(p.width / 2, p.height / 2);
-                for (var i = 0; i < turtles.length; i++) {
-                    p.push();
-                    p.translate(turtles[i].position.x, turtles[i].position.y);
-                    p.rotate(turtles[i].heading + 90);
-                    p.beginShape();
-                    p.vertex(0, -turtleSize);
-                    p.vertex(turtleSize / 3, 0);
-                    p.vertex(-turtleSize / 3, 0);
-                    p.endShape(p.CLOSE);
-                    p.fill(0);
-                    p.ellipse(0, 0, 5);
-                    p.fill(0, 200, 0);
-                    p.pop();
-                }
-
-            }
-            p.drawCount++;
-        }
-    };
-    p.keyPressed = function() {
-        if (p.keyCode === 32) {
-            if (looping) {
-                p.noLoop();
-                sketch.noLoop();
-                looping = false;
-            } else {
-                p.loop();
-                sketch.loop();
-                looping = true;
-            }
-        }
-        if (p.key == 't' || p.key == 'T') {
-            if (showTurtle) {
-                showTurtle = false;
-            } else {
-                showTurtle = true;
-            }
-        }
-        if (p.key == 'r' || p.key == 'R') {
-            window.location.reload();
+            noLoop();
+            looping = false;
+        } else {
+            loop();
+            looping = true;
         }
     }
-});
-
-// var turtleDisplay = new p5(function(p) {
-//     p.setup = function() {
-//         p.canvas = p.createCanvas(p.windowWidth, p.windowHeight);
-//         p.frameRate(30);
-//         p.angleMode(p.DEGREES);
-//         p.noStroke();
-//         p.fill(0, 200, 0);
-//         p.canvas.addClass('turtle');
-//         if (!looping) { p.noLoop(); }
-//     };
-//     p.draw = function() {
-//         p.clear();
-//         p.translate(p.width / 2, p.height / 2);
-//         for (var i = 0; i < turtles.length; i++) {
-//             p.push();
-//             p.translate(turtles[i].position.x, turtles[i].position.y);
-//             p.rotate(turtles[i].heading + 90);
-//             p.beginShape();
-//             p.vertex(0, -turtleSize);
-//             p.vertex(turtleSize / 3, 0);
-//             p.vertex(-turtleSize / 3, 0);
-//             p.endShape(p.CLOSE);
-//             p.fill(0);
-//             p.ellipse(0, 0, 5);
-//             p.fill(0, 200, 0);
-//             p.pop();
-//         }
-//     };
-//     p.keyPressed = function() {
-//         if (p.keyCode === 32) {
-//             if (looping) {
-//                 p.noLoop();
-//                 sketch.noLoop();
-//                 looping = false;
-//             } else {
-//                 p.loop();
-//                 sketch.loop();
-//                 looping = true;
-//             }
-//         }
-//         if (p.key == 't' || p.key == 'T') {
-//             if (showTurtle) {
-//                 showTurtle = false;
-//                 p.canvas.style("display", "none");
-//                 p.noLoop();
-//             } else {
-//                 showTurtle = true;
-//                 p.canvas.style("display", "block");
-//                 p.loop();
-//             }
-//         }
-//         if (p.key == 'r' || p.key == 'R') {
-//             window.location.reload();
-//         }
-//     }
-// });
+    if (key == 't' || key == 'T') {
+        if (showTurtle) {
+            showTurtle = false;
+        } else {
+            showTurtle = true;
+        }
+    }
+    if (key == 'r' || key == 'R') {
+        window.location.reload();
+    }
+}
