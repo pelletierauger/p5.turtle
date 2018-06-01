@@ -1,6 +1,6 @@
 var looping = true;
 var showTurtle = true;
-var turtleSize = 25;
+var turtleSize = 45;
 var turtleSpeed = 1;
 let graphics;
 let drawCount = 0;
@@ -20,40 +20,65 @@ function setup() {
     graphics.fill(0);
     canvas.addClass('sketch');
     angleMode(DEGREES);
-    // textFont("'Inconsolata', 'Baskerville', Georgia, serif");
-    // textSize(25);
+    textFont("'Inconsolata', 'Baskerville', Georgia, serif");
+    textSize(60);
     if (!looping) { noLoop(); }
 }
 
 function draw() {
-    if (looping) {
+    for (let i = 0; i < 2; i++) {
         graphics.push();
         graphics.translate(width / 2, height / 2);
         drawTurtle();
         graphics.pop();
-        image(graphics, 0, 0, width, height);
-        // fill(0);
-        // text("f = " + f, width / 2, height * 0.75);
-        // fill(0, 200, 0);
-        if (showTurtle) {
-            translate(width / 2, height / 2);
-            for (var i = 0; i < turtles.length; i++) {
-                push();
-                translate(turtles[i].position.x, turtles[i].position.y);
-                rotate(turtles[i].heading + 90);
-                beginShape();
-                vertex(0, -turtleSize);
-                vertex(turtleSize / 3, 0);
-                vertex(-turtleSize / 3, 0);
-                endShape(CLOSE);
-                fill(0);
-                ellipse(0, 0, 5);
-                fill(0, 200, 0);
-                pop();
-            }
-
-        }
         drawCount++;
+    }
+
+    image(graphics, 0, 0, width, height);
+    fill(0);
+    text("freq = " + f, 50, height - 50);
+    fill(0, 200, 0);
+
+
+
+    if (showTurtle) {
+        translate(width / 2, height / 2);
+        stroke(0, 50);
+        strokeWeight(2);
+        line(freq[currentFreq].x, -height, freq[currentFreq].x, height);
+        line(-width, freq[currentFreq].y, width, freq[currentFreq].y);
+        noStroke();
+        for (var i = 0; i < turtles.length; i++) {
+            push();
+            translate(turtles[i].position.x, turtles[i].position.y);
+            rotate(turtles[i].heading + 90);
+            beginShape();
+            vertex(0, -turtleSize);
+            vertex(turtleSize / 3, 0);
+            vertex(-turtleSize / 3, 0);
+            endShape(CLOSE);
+            fill(0);
+            ellipse(0, 0, 5);
+            fill(0, 200, 0);
+            pop();
+        }
+
+    }
+    if (drawCount > freq[currentFreq].d) {
+        graphics.background(255);
+        currentFreq++;
+        f = freq[currentFreq].f;
+        instructionBox = [];
+        cosineOscillator.heading = 0;
+        cosineOscillator.position = new p5.Vector(freq[currentFreq].x, freq[currentFreq].y);
+        let a = 0;
+        for (let i = 0; i < 1200; i++) {
+            a = Math.cos(i * f) * 20;
+            left(a);
+            forward(10);
+        }
+        cosineOscillator.states = instructionBox;
+        drawCount = 0;
     }
 }
 
