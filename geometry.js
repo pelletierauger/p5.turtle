@@ -51,22 +51,22 @@ function drawTurtle() {
             var penDown = (turtles[i].penDown) ? true : false;
             if (turtles[i].states[t].f == "forward" || turtles[i].states[t].f == "back") {
                 if (penDown) {
-                    sketch.beginShape();
-                    sketch.vertex(turtles[i].position.x, turtles[i].position.y);
+                    graphics.beginShape();
+                    graphics.vertex(turtles[i].position.x, turtles[i].position.y);
                 }
             }
             if (turtles[i].states[t].f == "forward") {
                 var a = turtles[i].heading;
                 var r = turtles[i].states[t].s;
-                var x = turtleDisplay.cos(a) * r;
-                var y = turtleDisplay.sin(a) * r;
+                var x = sketch.cos(a) * r;
+                var y = sketch.sin(a) * r;
                 turtles[i].position.x += x;
                 turtles[i].position.y += y;
             } else if (turtles[i].states[t].f == "back") {
                 var a = turtles[i].heading;
                 var r = turtles[i].states[t].s;
-                var x = turtleDisplay.cos(a) * r;
-                var y = turtleDisplay.sin(a) * r;
+                var x = sketch.cos(a) * r;
+                var y = sketch.sin(a) * r;
                 turtles[i].position.x -= x;
                 turtles[i].position.y -= y;
             } else if (turtles[i].states[t].f == "right") {
@@ -82,8 +82,8 @@ function drawTurtle() {
             }
             if (turtles[i].states[t].f == "forward" || turtles[i].states[t].f == "back") {
                 if (penDown) {
-                    sketch.vertex(turtles[i].position.x, turtles[i].position.y);
-                    sketch.endShape(sketch.LINE);
+                    graphics.vertex(turtles[i].position.x, turtles[i].position.y);
+                    graphics.endShape(sketch.LINE);
                 }
             }
         }
