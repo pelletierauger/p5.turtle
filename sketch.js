@@ -25,7 +25,7 @@ var turtleDisplay = new p5(function(p) {
             p.vertex(turtleSize / 3, 0);
             p.vertex(-turtleSize / 3, 0);
             p.endShape(p.CLOSE);
-            p.fill(255);
+            p.fill(0);
             p.ellipse(0, 0, 5);
             p.fill(0, 200, 0);
             p.pop();
@@ -54,6 +54,9 @@ var turtleDisplay = new p5(function(p) {
                 p.loop();
             }
         }
+        if (p.key == 'r' || p.key == 'R') {
+            window.location.reload();
+        }
     }
 });
 
@@ -62,9 +65,10 @@ var sketch = new p5(function(p) {
     p.setup = function() {
         p.canvas = p.createCanvas(p.windowWidth, p.windowHeight);
         p.frameRate(30);
-        p.background(0);
-        p.stroke(255);
-        p.fill(255);
+        p.background(255);
+        p.strokeWeight(2);
+        p.stroke(0);
+        p.fill(0);
         p.canvas.addClass('sketch');
         p.angleMode(p.DEGREES);
         if (!looping) { p.noLoop(); }
