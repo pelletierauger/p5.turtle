@@ -1,4 +1,7 @@
-var looping = true;
+let looping = true;
+let socket, cnvs, ctx, canvasDOM;
+let fileName = "./frames/cosine-demo";
+let maxFrames = 2770;
 var showTurtle = true;
 var turtleSize = 45;
 var turtleSpeed = 1;
@@ -7,9 +10,16 @@ let drawCount = 0;
 let canvas;
 
 function setup() {
+    socket = io.connect('http://localhost:8080');
     canvas = createCanvas(windowWidth, windowHeight);
+    ctx = canvas.drawingContext;
+    canvasDOM = document.getElementById('defaultCanvas0');
     graphics = createGraphics(width * 2, height * 2);
-    frameRate(30);
+    if (exporting) {
+        frameRate(2);
+    } else {
+        frameRate(30);
+    }
     background(255);
     strokeWeight(2);
     noStroke();
@@ -21,7 +31,7 @@ function setup() {
     canvas.addClass('sketch');
     angleMode(DEGREES);
     textFont("'Inconsolata', 'Baskerville', Georgia, serif");
-    textSize(60);
+    textSize(35);
     if (!looping) { noLoop(); }
 }
 
@@ -64,6 +74,9 @@ function draw() {
         }
 
     }
+    if (exporting && frameCount < maxFrames) {
+        frameExport();
+    }
     if (drawCount > freq[currentFreq].d) {
         graphics.background(255);
         currentFreq++;
@@ -80,6 +93,7 @@ function draw() {
         cosineOscillator.states = instructionBox;
         drawCount = 0;
     }
+
 }
 
 function keyPressed() {
