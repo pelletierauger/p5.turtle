@@ -1,2 +1,6 @@
 ffmpeg -f image2 -framerate 30 -i ./frames/cosine-demo-%05d.png -c:v libx264 -s 1280x800 -pix_fmt yuv420p ./video-renders/cosine-demo-30fps.mp4
 
+ffmpeg -f image2 -framerate 30 -i ./frames/cosine-demo-b-%05d.png -c:v libx264 -s 1280x800 -pix_fmt yuv420p ./video-renders/cosine-demo-b-30fps.mp4
+
+ffmpeg -f image2 -framerate 30 -i ./frames/cosine-demo-c-%05d.png -c:v libx264 -s 1280x800 -pix_fmt yuv420p ./video-renders/cosine-demo-c-30fps.mp4
+
