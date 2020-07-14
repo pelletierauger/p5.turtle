@@ -45,45 +45,50 @@ function repeat(n, f) {
 }
 
 function drawTurtle() {
-    var t = drawCount;
+    // var t = drawCount;
     for (var i = 0; i < turtles.length; i++) {
-        if (turtles[i].states[t]) {
-            var penDown = (turtles[i].penDown) ? true : false;
-            if (turtles[i].states[t].f == "forward" || turtles[i].states[t].f == "back") {
-                if (penDown) {
-                    graphics.beginShape();
-                    graphics.vertex(turtles[i].position.x, turtles[i].position.y);
+        for (let j = 0; j < turtles[i].stepsPerFrame; j++) {
+
+            var t = turtles[i].currentState;
+            if (turtles[i].states[t]) {
+                turtles[i].currentState++;
+                var penDown = (turtles[i].penDown) ? true : false;
+                if (turtles[i].states[t].f == "forward" || turtles[i].states[t].f == "back") {
+                    if (penDown) {
+                        graphics.beginShape();
+                        graphics.vertex(turtles[i].position.x, turtles[i].position.y);
+                    }
                 }
-            }
-            if (turtles[i].states[t].f == "forward") {
-                var a = turtles[i].heading;
-                var r = turtles[i].states[t].s;
-                var x = cos(a) * r;
-                var y = sin(a) * r;
-                turtles[i].position.x += x;
-                turtles[i].position.y += y;
-            } else if (turtles[i].states[t].f == "back") {
-                var a = turtles[i].heading;
-                var r = turtles[i].states[t].s;
-                var x = cos(a) * r;
-                var y = sin(a) * r;
-                turtles[i].position.x -= x;
-                turtles[i].position.y -= y;
-            } else if (turtles[i].states[t].f == "right") {
-                var angle = turtles[i].states[t].a;
-                turtles[i].heading += angle;
-            } else if (turtles[i].states[t].f == "left") {
-                var angle = turtles[i].states[t].a;
-                turtles[i].heading -= angle;
-            } else if (turtles[i].states[t].f == "penUp") {
-                turtles[i].penDown = false;
-            } else if (turtles[i].states[t].f == "penDown") {
-                turtles[i].penDown = true;
-            }
-            if (turtles[i].states[t].f == "forward" || turtles[i].states[t].f == "back") {
-                if (penDown) {
-                    graphics.vertex(turtles[i].position.x, turtles[i].position.y);
-                    graphics.endShape();
+                if (turtles[i].states[t].f == "forward") {
+                    var a = turtles[i].heading;
+                    var r = turtles[i].states[t].s;
+                    var x = cos(a) * r;
+                    var y = sin(a) * r;
+                    turtles[i].position.x += x;
+                    turtles[i].position.y += y;
+                } else if (turtles[i].states[t].f == "back") {
+                    var a = turtles[i].heading;
+                    var r = turtles[i].states[t].s;
+                    var x = cos(a) * r;
+                    var y = sin(a) * r;
+                    turtles[i].position.x -= x;
+                    turtles[i].position.y -= y;
+                } else if (turtles[i].states[t].f == "right") {
+                    var angle = turtles[i].states[t].a;
+                    turtles[i].heading += angle;
+                } else if (turtles[i].states[t].f == "left") {
+                    var angle = turtles[i].states[t].a;
+                    turtles[i].heading -= angle;
+                } else if (turtles[i].states[t].f == "penUp") {
+                    turtles[i].penDown = false;
+                } else if (turtles[i].states[t].f == "penDown") {
+                    turtles[i].penDown = true;
+                }
+                if (turtles[i].states[t].f == "forward" || turtles[i].states[t].f == "back") {
+                    if (penDown) {
+                        graphics.vertex(turtles[i].position.x, turtles[i].position.y);
+                        graphics.endShape();
+                    }
                 }
             }
         }
