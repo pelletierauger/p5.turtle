@@ -4,3 +4,28 @@ ffmpeg -f image2 -framerate 30 -i ./frames/cosine-demo-b-%05d.png -c:v libx264 -
 
 ffmpeg -f image2 -framerate 30 -i ./frames/cosine-demo-c-%05d.png -c:v libx264 -s 1280x800 -pix_fmt yuv420p ./video-renders/cosine-demo-c-30fps.mp4
 
+ffmpeg -f image2 -framerate 30 -i ./frames/cosine-demo-%05d.png -c:v libx264 -s 1280x800 -pix_fmt yuv420p ./video-renders/cosine-demo-30fps.mp4
+
+
+
+ffmpeg -i ./frames/cosine-demo-c-%05d.png -filter:v "scale=1280:800" ./frames-1280x800/cosine-demo-c-%05d.png
+
+ffmpeg -f image2 -framerate 12 -i ./frames-1280x800/cosine-demo-c-%05d.png -vf palettegen cosine-demo-palette.png
+
+ffmpeg -f image2 -framerate 30 -i ./frames-1280x800/cosine-demo-c-%05d.png -i cosine-demo-palette.png -lavfi paletteuse cosine-demo-c.gif
+
+gifsicle -O3 --lossy=100 -o nights-of-march-20-720x720-lossy100.gif nights-of-march-20-720x720.gif
+gifsicle -O3 --lossy=200 -o nights-of-march-20-720x720-lossy200.gif nights-of-march-20-720x720.gif
+gifsicle -O3 --lossy=150 -o nights-of-march-20-720x720-lossy150.gif nights-of-march-20-720x720.gif
+gifsicle -O3 --lossy=250 -o nights-of-march-20-720x720-lossy250.gif nights-of-march-20-720x720.gif
+gifsicle -O3 --lossy=300 -o nights-of-march-20-720x720-lossy300.gif nights-of-march-20-720x720.gif
+gifsicle -O3 --lossy=400 -o nights-of-march-20-720x720-lossy400.gif nights-of-march-20-720x720.gif
+
+
+
+
+ffmpeg -i ./frames-2/cosine-demo-c-%05d.png -filter:v "scale=1280:800" ./frames-2-1280x800/cosine-demo-c-%05d.png
+
+ffmpeg -f image2 -framerate 12 -i ./frames-1280x800/cosine-demo-c-%05d.png -vf palettegen cosine-demo-palette.png
+
+ffmpeg -f image2 -framerate 30 -i ./frames-2-1280x800/cosine-demo-c-%05d.png -i cosine-demo-palette.png -lavfi paletteuse cosine-demo-c-2.gif
