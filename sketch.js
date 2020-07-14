@@ -1,6 +1,6 @@
 let looping = true;
 let socket, cnvs, ctx, canvasDOM;
-let fileName = "./frames/cosine-demo-c";
+let fileName = "./frames-2/cosine-demo-c";
 let maxFrames = 2770;
 var showTurtle = true;
 var turtleSize = 45;
@@ -46,7 +46,7 @@ function draw() {
 
     image(graphics, 0, 0, width, height);
     fill(0);
-    text("freq = " + f, 50, 75);
+    text("freq = " + f, -1, height - 7);
     fill(0, 200, 0);
 
 
