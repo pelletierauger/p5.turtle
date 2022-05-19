@@ -84,7 +84,9 @@ function drawTurtle() {
                 } else if (turtles[i].states[t].f == "penDown") {
                     turtles[i].penDown = true;
                 }
+
                 if (turtles[i].states[t].f == "forward" || turtles[i].states[t].f == "back") {
+                    turtles[i].history.push({ x: turtles[i].position.x, y: turtles[i].position.y });
                     if (penDown) {
                         graphics.vertex(turtles[i].position.x, turtles[i].position.y);
                         graphics.endShape();

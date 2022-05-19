@@ -1,7 +1,8 @@
 let keysActive = true;
 let looping = true;
 let socket, cnvs, ctx, canvasDOM;
-let fileName = "./frames-2/cosine-demo-c";
+// let fileName = "/Volumes/Volumina/frames/p5-turtle-typography-center/frame";
+let fileName = "/Volumes/Volumina/frames/p5-turtle/typography-thicker/frame";
 let maxFrames = 2770;
 var showTurtle = true;
 var turtleSize = 30;
@@ -12,7 +13,8 @@ let canvas;
 
 function setup() {
     socket = io.connect('http://localhost:8080');
-    canvas = createCanvas(windowWidth, windowHeight);
+    // canvas = createCanvas(windowWidth, windowHeight);
+    canvas = createCanvas(550, 550);
     ctx = canvas.drawingContext;
     canvasDOM = document.getElementById('defaultCanvas0');
     graphics = createGraphics(width * 2, height * 2);
@@ -25,7 +27,7 @@ function setup() {
     strokeWeight(2);
     noStroke();
     fill(0, 200, 0);
-    graphics.background(200);
+    graphics.background(255);
     graphics.strokeWeight(1.25);
     graphics.stroke(0);
     graphics.fill(0);

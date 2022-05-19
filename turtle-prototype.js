@@ -7,6 +7,8 @@ var Turtle = function(t) {
     this.penDown = true;
     this.awake = (t.awake != null) ? t.awake : true;
     this.currentState = 0;
+    this.history = [];
+    this.history.push({ x: this.position.x, y: this.position.y });
     this.stepsPerFrame = t.stepsPerFrame || 1;
     if (this.awake) {
         t.instructions();
@@ -24,6 +26,8 @@ Turtle.prototype.reset = function(t) {
     this.currentState = 0;
     this.stepsPerFrame = t.stepsPerFrame || 1;
     instructionBox = [];
+    this.history = [];
+    this.history.push({ x: this.position.x, y: this.position.y });
     if (this.awake) {
         t.instructions();
         this.states = instructionBox;
